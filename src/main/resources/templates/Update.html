@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link th:href="@{/style.css}" rel="stylesheet" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>RMS Study Case</title>
+</head>
+<body class="bodybg">
+<form action="#" th:action="@{/updateUser}" th:object="${user}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <label>
+        <p class="label-txt">Enter your name</p>
+        <input type="text" th:field="*{name}" class="input">
+        <div class="line-box">
+            <div class="line"></div>
+        </div>
+    </label>
+    <label>
+        <p class="label-txt">Enter your password</p>
+        <input type="text" th:field="*{password}" class="input">
+        <div class="line-box">
+            <div class="line"></div>
+        </div>
+    </label>
+    <label>
+        <p class="label-txt">Chose your role</p>
+        <select th:field="*{role}" class="input">
+            <option value="member">Member</option>
+            <option value="admin">Admin</option>
+        </select>
+        <div class="line-box">
+            <div class="line"></div>
+        </div>
+    </label>
+    <button type="submit">submit</button>
+</form>
+</body>
+</html>
