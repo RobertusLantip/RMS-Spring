@@ -1,45 +1,61 @@
 package com.mitrais.RMS.StudyCase.Config;
 
+import com.mitrais.RMS.StudyCase.Service.CustomAuthenticationSuccessHandler;
+import com.mitrais.RMS.StudyCase.Service.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private AccessDeniedHandler accessDeniedHandler;
 
-    // roles admin allow to access /admin/**
-    // roles user allow to access /user/**
-    // custom 403 access denied handler
+    @Autowired
+    CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+    @Autowired
+    private MyUserDetails myUserDetails;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http.csrf().disable()
+        http
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/about").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("USER")
+                .antMatchers("/admin/**").hasAuthority("admin")
+                .antMatchers("/member/**").hasAuthority("member")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/Login")
+                .loginPage("/login")
                 .permitAll()
+                .successHandler(customAuthenticationSuccessHandler)
                 .and()
                 .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .permitAll()
                 .and()
-                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+                .rememberMe()
+                .key("remembermepls")
+                .rememberMeParameter("remember")
+                .rememberMeCookieName("isToBeRemember")
+                .tokenValiditySeconds(3600)
+                .and().csrf().disable().cors().disable()
+        ;
     }
 
-    // create two users, admin and user
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(myUserDetails).passwordEncoder(passwordEncoder());
+    }
 
-        auth.inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER")
-                .and()
-                .withUser("admin").password("password").roles("ADMIN");
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

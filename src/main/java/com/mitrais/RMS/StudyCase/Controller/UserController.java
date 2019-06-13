@@ -21,14 +21,7 @@ public class UserController {
         return "Login";
     }
 
-    @RequestMapping(value = "/routing_login", method = RequestMethod.POST)
-    public String Routing(@ModelAttribute User user, Model model) {
-
-        model.addAttribute("users",userService.findAllUsers());
-        return "Users";
-    }
-
-    @GetMapping("user")
+    @GetMapping("admin/user")
     public String Users(Model model){
         model.addAttribute("users",userService.findAllUsers());
         return "Users";
@@ -45,7 +38,17 @@ public class UserController {
         }
     }
 
-    @GetMapping("create")
+    @GetMapping("admin")
+    public String Admin(){
+        return "Admin";
+    }
+
+    @GetMapping("member")
+    public String Member(){
+        return "Member";
+    }
+
+    @GetMapping("admin/create")
     public String Create(Model model){
         User user = new User();
         model.addAttribute("user",user);

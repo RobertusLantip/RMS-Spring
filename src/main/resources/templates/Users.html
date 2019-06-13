@@ -1,35 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link th:href="@{/style.css}" rel="stylesheet" />
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <meta charset="UTF-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>RMS Study Case</title>
     <!------ Include the above in your HEAD tag ---------->
 </head>
-    <body>
-        <div class="container">
-            <div class="row col-md-6 col-md-offset-2 custyle">
-                <table class="table table-striped custab">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Password</th>
-                        <th>Role</th>
-                        <th colspan="2"> Action </th>
-                    </tr>
-                    </thead>
-                    <tr th:each="user : ${users}">
-                        <td><span th:text="${user.name}"></span></td>
-                        <td><span th:text="${user.password}"></span></td>
-                        <td><span th:text="${user.role}"></span></td>
-                        <td><a th:href="@{/find_user(personId=${user.getId()})}" class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Update</a></td>
-                        <td><a th:href="@{/delete_user(personId=${user.getId()})}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
-                    </tr>
-                </table>
-            </div>
+<body style="background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/admin">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/user">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/create">Create</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
         </div>
-    </body>
+    </nav>
+</header>
+<main>
+    <div class="container">
+        <div class="row col-md-6 col-md-offset-2 custyle">
+            <table class="table table-striped custab" style="background: white">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Password</th>
+                    <th>Role</th>
+                    <th colspan="2"> Action </th>
+                </tr>
+                </thead>
+                <tr th:each="user : ${users}">
+                    <td><span th:text="${user.name}"></span></td>
+                    <td><span th:text="${user.password}"></span></td>
+                    <td><span th:text="${user.role}"></span></td>
+                    <td><a th:href="@{/find_user(personId=${user.getId()})}" class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Update</a></td>
+                    <td><a th:href="@{/delete_user(personId=${user.getId()})}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="container">
+    </div>
+</main>
+</body>
 </html>

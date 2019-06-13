@@ -52,4 +52,10 @@ public class UserService {
         }
         return result;
     }
+
+    public String getRole(int id){
+        User user = userRepository.findById(id).orElse(null);
+        return user.getRole();
+    }
+
 }
