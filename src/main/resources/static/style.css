@@ -22,15 +22,26 @@ table thead th{
     background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
 }
 
+.containercustom {
+    width: 60%;
+    margin: 60px auto;
+    background: #efefef;
+    padding: 60px 120px 80px 120px;
+    /*text-align: center;*/
+    -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+}
+
 form {
     width: 60%;
     margin: 60px auto;
     background: #efefef;
     padding: 60px 120px 80px 120px;
-    text-align: center;
+    /*text-align: center;*/
     -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
     box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
 }
+
 label {
     display: block;
     position: relative;

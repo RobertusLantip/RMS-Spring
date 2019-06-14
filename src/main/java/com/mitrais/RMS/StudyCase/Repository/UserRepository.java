@@ -7,4 +7,5 @@ import javax.validation.constraints.NotNull;
 
 public interface UserRepository extends JpaRepository<User,Integer> {
     User findByName(@NotNull String name);
+    User findByNameAndPassword(String name, String password);
 }

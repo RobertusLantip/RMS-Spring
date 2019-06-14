@@ -21,10 +21,10 @@
                     <a class="nav-link" href="/admin">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user">Users</a>
+                    <a class="nav-link" href="/admin/user">Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/create">Create</a>
+                    <a class="nav-link" href="/admin/create">Create</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>
@@ -33,17 +33,17 @@
         </div>
     </nav>
 </header>
-<form action="#" th:action="@{/saveUser}" th:object="${user}" method="post">
+<form action="#" th:action="@{/admin/saveUser}" th:object="${user}" method="post">
     <label>
         <p class="label-txt">Enter your name</p>
-        <input type="text" th:field="*{name}" class="input">
+        <input type="text" th:field="*{name}" class="input" required>
         <div class="line-box">
             <div class="line"></div>
         </div>
     </label>
     <label>
         <p class="label-txt">Enter your password</p>
-        <input type="password" th:field="*{password}" class="input">
+        <input type="password" th:field="*{password}" class="input" required>
         <div class="line-box">
             <div class="line"></div>
         </div>

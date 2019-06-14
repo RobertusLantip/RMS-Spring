@@ -9,22 +9,46 @@
     <title>RMS Study Case</title>
 </head>
 <body class="bodybg">
-<form action="#" th:action="@{/updateUser}" th:object="${user}" method="post">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/admin">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin/user">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin/create">Create</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<form action="#" th:action="@{/admin/updateUser}" th:object="${user}" method="post">
     <input type="hidden" th:field="*{id}">
     <label>
         <p class="label-txt">Enter your name</p>
-        <input type="text" th:field="*{name}" class="input">
+        <input type="text" th:field="*{name}" class="input" required>
         <div class="line-box">
             <div class="line"></div>
         </div>
     </label>
-    <label>
-        <p class="label-txt">Enter your password</p>
-        <input type="text" th:field="*{password}" class="input">
-        <div class="line-box">
-            <div class="line"></div>
-        </div>
-    </label>
+<!--    <label>-->
+<!--        <p class="label-txt">Enter your new password</p>-->
+<!--        <input type="text" th:field="*{password}" class="input" required>-->
+<!--        <div class="line-box">-->
+<!--            <div class="line"></div>-->
+<!--        </div>-->
+<!--    </label>-->
     <label>
         <p class="label-txt">Chose your role</p>
         <select th:field="*{role}" class="input">

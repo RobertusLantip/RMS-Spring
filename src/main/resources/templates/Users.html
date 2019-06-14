@@ -35,22 +35,20 @@
 </header>
 <main>
     <div class="container">
-        <div class="row col-md-6 col-md-offset-2 custyle">
+        <div class="row col-md-12 col-md-offset-2 custyle">
             <table class="table table-striped custab" style="background: white">
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Password</th>
                     <th>Role</th>
                     <th colspan="2"> Action </th>
                 </tr>
                 </thead>
                 <tr th:each="user : ${users}">
                     <td><span th:text="${user.name}"></span></td>
-                    <td><span th:text="${user.password}"></span></td>
                     <td><span th:text="${user.role}"></span></td>
-                    <td><a th:href="@{/find_user(personId=${user.getId()})}" class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Update</a></td>
-                    <td><a th:href="@{/delete_user(personId=${user.getId()})}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
+                    <td><a th:href="@{/admin/find_user(personId=${user.getId()})}" class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Update</a></td>
+                    <td><a th:href="@{/admin/delete_user(personId=${user.getId()})}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
                 </tr>
             </table>
         </div>
